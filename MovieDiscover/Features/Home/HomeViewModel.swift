@@ -5,9 +5,11 @@
 //  Created by Rodrigo Galeano on 17/11/24.
 //
 
+import Foundation
+
 class HomeViewModel {
-    private var movies: [Movie] = []
-    private var errorMessage: String?
+    @Published private var movies: [Movie] = []
+    @Published private var errorMessage: String?
     
     private var getTopRatedMoviesUsecase: GetTopRatedMoviesUseCaseProtocol
     
