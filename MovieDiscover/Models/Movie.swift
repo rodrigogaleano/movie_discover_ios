@@ -16,12 +16,14 @@ struct Movie: Decodable {
     var title: String
     var overview: String
     var posterPath: String?
+    var releaseDate: String
     
     enum CodingKeys: String, CodingKey {
         case id
         case title
         case overview
         case posterPath = "poster_path"
+        case releaseDate = "release_date"
     }
     
     var posterURL: URL? {
@@ -32,6 +34,14 @@ struct Movie: Decodable {
         
         return url
     }
+    
+    var releaseYear: String {
+        if let releaseYear = self.releaseDate.split(separator: "-").first {
+            return String(releaseYear)
+        }
+        
+        return ""
+    }
 }
 
 let moviesMock: [Movie] = [
@@ -39,12 +49,14 @@ let moviesMock: [Movie] = [
         id: 1,
         title: "Title 1",
         overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In malesuada condimentum diam, vel consectetur magna ullamcorper volutpat. Duis mi sapien, ultricies venenatis malesuada ac, maximus eget nisi.",
-        posterPath: "/gCI2AeMV4IHSewhJkzsur5MEp6R.jpg"
+        posterPath: "/gCI2AeMV4IHSewhJkzsur5MEp6R.jpg",
+        releaseDate: "1994-09-23"
     ),
     Movie(
         id: 2,
         title: "Title 2",
         overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In malesuada condimentum diam, vel consectetur magna ullamcorper volutpat. Duis mi sapien, ultricies venenatis malesuada ac, maximus eget nisi.",
-        posterPath: "/gCI2AeMV4IHSewhJkzsur5MEp6R.jpg"
+        posterPath: "/gCI2AeMV4IHSewhJkzsur5MEp6R.jpg",
+        releaseDate: "1994-09-23"
     ),
 ]

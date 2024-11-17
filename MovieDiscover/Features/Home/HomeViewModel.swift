@@ -8,6 +8,7 @@
 import Foundation
 
 class HomeViewModel {
+    @Published var isLoading: Bool = true
     @Published private var movies: [Movie] = []
     @Published private var errorMessage: String?
     
@@ -25,9 +26,11 @@ extension HomeViewModel: HomeViewModelProtocol {
     
     func loadContent() {
         getTopRatedMoviesUsecase.execute { movies in
-            self.movies = movies
+            self.movies = movies.shuffled()
+            self.isLoading = false
         } failure: { error in
             self.errorMessage = error
+            self.isLoading = false
         }
     }
 }

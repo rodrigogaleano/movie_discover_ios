@@ -16,6 +16,10 @@ class MovieItemViewModel {
 }
 
 extension MovieItemViewModel: MovieItemViewModelProtocol {
+    var id: Int {
+        movie.id
+    }
+    
     var posterURL: URL? {
         movie.posterURL
     }

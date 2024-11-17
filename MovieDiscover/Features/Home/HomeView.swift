@@ -8,30 +8,31 @@
 import SwiftUI
 
 protocol HomeViewModelProtocol: ObservableObject {
+    var isLoading: Bool { get }
     var moviesViewModels: [any MovieItemViewModelProtocol] { get }
     
     func loadContent()
 }
 
 struct HomeView<ViewModel: HomeViewModelProtocol>: View {
-    @ObservedObject var viewModel: ViewModel
+    @StateObject var viewModel: ViewModel
     
     var body: some View {
-        NavigationStack {
-                VStack {
-                    Spacer()
-                    TabView {
-                        ForEach(viewModel.moviesViewModels.indices, id: \.self) { index in
-                            let currentViewModel = viewModel.moviesViewModels[index]
-                            
-                            MovieItemView(viewModel: currentViewModel)
-                        }
+        VStack {
+            if viewModel.isLoading {
+                LoadingView()
+            } else {
+                TabView {
+                    ForEach(viewModel.moviesViewModels.indices, id: \.self) { index in
+                        let currentViewModel = viewModel.moviesViewModels[index]
+                        
+                        MovieItemView(viewModel: currentViewModel)
                     }
-                    .tabViewStyle(.page(indexDisplayMode: .automatic))
-                    Spacer()
                 }
-            .navigationTitle("Discover Movies")
+                .tabViewStyle(.page(indexDisplayMode: .automatic))
+            }
         }
+        .navigationTitle("Discover Movies")
         .onAppear {
             viewModel.loadContent()
         }

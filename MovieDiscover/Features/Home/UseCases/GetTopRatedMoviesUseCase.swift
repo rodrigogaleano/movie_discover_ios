@@ -7,10 +7,10 @@
 
 import Foundation
 
-typealias Success = (([Movie]) -> Void)
-typealias Failure = ((String) -> Void)
-
 protocol GetTopRatedMoviesUseCaseProtocol {
+    typealias Success = (([Movie]) -> Void)
+    typealias Failure = ((String) -> Void)
+    
     func execute(success: Success?, failure: Failure?)
 }
 
