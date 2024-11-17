@@ -7,8 +7,14 @@
 
 import SwiftUI
 
+protocol MovieItemViewModelProtocol {
+    var title: String { get }
+}
+
 struct MovieItemView: View {
     @State private var isShowing = false
+    
+    var viewModel: any MovieItemViewModelProtocol
     
     var body: some View {
         VStack(spacing: 24) {
@@ -22,7 +28,7 @@ struct MovieItemView: View {
                     .foregroundStyle(.black)
                     .shadow(radius: 20, y: isShowing ? 28 : 0)
             }
-            Text("Interestellar")
+            Text(viewModel.title)
                 .font(.title2)
         }
         .onAppear {
@@ -39,5 +45,7 @@ struct MovieItemView: View {
 }
 
 #Preview {
-    MovieItemView()
+    let viewModel = MovieItemViewModel(movie: moviesMock[0])
+    
+    MovieItemView(viewModel: viewModel)
 }

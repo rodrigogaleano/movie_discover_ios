@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D699F09A2CEA6E1100209D9D /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = D699F0992CEA6E1100209D9D /* Moya */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D68F973D2CE999C000F0ED99 /* MovieDiscover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieDiscover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D699F09A2CEA6E1100209D9D /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = MovieDiscover;
 			packageProductDependencies = (
+				D699F0992CEA6E1100209D9D /* Moya */,
 			);
 			productName = MovieDiscover;
 			productReference = D68F973D2CE999C000F0ED99 /* MovieDiscover.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = D68F97342CE999C000F0ED99;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D699F0982CEA6E1100209D9D /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D68F973E2CE999C000F0ED99 /* Products */;
 			projectDirPath = "";
@@ -335,6 +344,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D699F0982CEA6E1100209D9D /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D699F0992CEA6E1100209D9D /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D699F0982CEA6E1100209D9D /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D68F97352CE999C000F0ED99 /* Project object */;
 }

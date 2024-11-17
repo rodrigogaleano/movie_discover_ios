@@ -7,15 +7,24 @@
 
 import SwiftUI
 
-struct HomeView: View {
+protocol HomeViewModelProtocol: ObservableObject {
+    var moviesViewModels: [any MovieItemViewModelProtocol] { get }
+    
+    func loadContent()
+}
+
+struct HomeView<ViewModel: HomeViewModelProtocol>: View {
+    @ObservedObject var viewModel: ViewModel
+    
     var body: some View {
         NavigationStack {
                 VStack {
                     Spacer()
                     TabView {
-                        ForEach(0..<10) { index in
-                            MovieItemView()
-                                .tag(index)
+                        ForEach(viewModel.moviesViewModels.indices, id: \.self) { index in
+                            let currentViewModel = viewModel.moviesViewModels[index]
+                            
+                            MovieItemView(viewModel: currentViewModel)
                         }
                     }
                     .tabViewStyle(.page(indexDisplayMode: .automatic))
@@ -23,9 +32,12 @@ struct HomeView: View {
                 }
             .navigationTitle("Discover Movies")
         }
+        .onAppear {
+            viewModel.loadContent()
+        }
     }
 }
 
 #Preview {
-    HomeView()
+    HomeFactory.home()
 }
