@@ -9,6 +9,7 @@ import SwiftUI
 
 protocol MovieItemViewModelProtocol {
     var title: String { get }
+    var posterURL: URL? { get }
 }
 
 struct MovieItemView: View {
@@ -19,17 +20,19 @@ struct MovieItemView: View {
     var body: some View {
         VStack(spacing: 24) {
             ZStack {
-                Circle()
-                    .stroke(.blue, lineWidth: 56)
-                    .frame(width: 96, height: 96)
-                    .offset(y: isShowing ? -96 : 0)
-                RoundedRectangle(cornerRadius: 12)
-                    .frame(width: 200, height: 200)
-                    .foregroundStyle(.black)
+                Image("cd")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 156, height: 156)
+                    .offset(y: isShowing ? -136 : 0)
+                CachedImage(imageURL: viewModel.posterURL)
+                    .frame(width: 185, height: 278)
+                    .cornerRadius(8)
                     .shadow(radius: 20, y: isShowing ? 28 : 0)
             }
             Text(viewModel.title)
                 .font(.title2)
+                .multilineTextAlignment(.center)
         }
         .onAppear {
             withAnimation(.easeInOut(duration: 1.5)) {

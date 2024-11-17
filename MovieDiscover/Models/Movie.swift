@@ -24,10 +24,10 @@ struct Movie: Decodable {
         case posterPath = "poster_path"
     }
     
-    var posterUrl: URL? {
+    var posterURL: URL? {
         guard
             let posterPath = posterPath,
-            let url = URL(string: "https://image.tmdb.org/t/p/w200\(posterPath)")
+            let url = URL(string: "https://image.tmdb.org/t/p/w185\(posterPath)")
         else { return nil }
         
         return url

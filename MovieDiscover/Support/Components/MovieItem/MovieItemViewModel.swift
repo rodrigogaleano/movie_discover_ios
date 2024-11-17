@@ -16,6 +16,10 @@ class MovieItemViewModel {
 }
 
 extension MovieItemViewModel: MovieItemViewModelProtocol {
+    var posterURL: URL? {
+        movie.posterURL
+    }
+    
     var title: String {
         self.movie.title
     }
